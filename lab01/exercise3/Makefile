@@ -1,0 +1,19 @@
+
+CC := gcc 
+CFLAGS := -Wall -g -std=c99
+
+all: linked_list
+
+linked_list: linked_list.o test_linked_list.o
+	$(CC) -o linked_list linked_list.o test_linked_list.o
+
+linked_list.o: linked_list.c linked_list.h
+	$(CC) $(CFLAGS) -c linked_list.c
+
+test_linked_list.o: test_linked_list.c linked_list.h
+	$(CC) $(CFLAGS) -c test_linked_list.c
+
+.PHONY: all clean
+
+clean:
+	rm -rf *.o linked_list
